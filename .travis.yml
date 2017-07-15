@@ -4,7 +4,7 @@ sudo: false
 
 notifications:  #Optional
   email:
-      - samith143@gmail.com
+      - jackpott822@gmail.com
 
 before_cache:
     - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -29,6 +29,7 @@ env:
     - ANDROID_BUILD_TOOLS_VERSION=26.0.0
     - ADB_INSTALL_TIMEOUT=10    #Time out to 10 mins/2 minutes by default
     - ANDROID_ABI=google_apis/armeabi-v7a
+    #- ANDROID_ABI=armeabi-v7a
 android:
     components:
         - tools
@@ -50,10 +51,10 @@ android:
 
         #specify emulator system images on which application testing will be performed.
         #If you are going to use more than one API levels remember to define all the emulators needed
-        #- sys-img-armeabi-v7a-android-$ANDROID_API_LEVEL_LEVEL
-        #- sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
-        - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
-        - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+        - sys-img-armeabi-v7a-android-$ANDROID_API_LEVEL_LEVEL
+        - sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
+        #- sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+        #- sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
 
 #Google requires you to accept their license agreement before
 #you can get their libraries and tools.
@@ -61,8 +62,6 @@ licenses:
   - android-sdk-preview-license-.+
   - android-sdk-license-.+
   - google-gdk-license-.+
-
-
 
 before_script:
   - chmod +x gradlew #Grant permissions
@@ -81,6 +80,9 @@ script:
   #- ./gradlew connectedAndroidTest -PdisablePreDex --stacktrace
   #- ./gradlew connectedAndroidTest -PdisablePreDex --stacktrace
   - ./gradlew clean build
+#  - ./gradlew clean
+#  - ./gradlew assembleDebug
+#- ./gradlew assembleDebugAndroidTest
 
 before_install:
   - chmod +x gradlew
