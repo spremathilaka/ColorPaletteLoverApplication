@@ -24,9 +24,9 @@ env:
     - ANDROID_TARGET=android-25 ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
  global:
-    - ANDROID_API_LEVEL=26
+    - ANDROID_API_LEVEL=25
     - EMULATOR_API_LEVEL=21
-    - ANDROID_BUILD_TOOLS_VERSION=26.0.0
+    - ANDROID_BUILD_TOOLS_VERSION=25.0.2
     - ADB_INSTALL_TIMEOUT=10    #Time out to 10 mins/2 minutes by default
     - ANDROID_ABI=google_apis/armeabi-v7a
     #- ANDROID_ABI=armeabi-v7a
@@ -67,8 +67,8 @@ licenses:
 
 before_script:
 # Prepare pre-accepted licenses to not be promted at installation
-  - mkdir -p "$ANDROID_HOME/licenses"
-  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+ # - mkdir -p "$ANDROID_HOME/licenses"
+ #- cp ./google-licenses/* "$ANDROID_HOME/licenses/"
 
   - chmod +x gradlew #Grant permissions
   - android list targets
