@@ -39,7 +39,22 @@ captures/
 .idea/gradle.xml
 .idea/dictionaries
 .idea/libraries
+.idea/compiler.xml
+.idea/copyright/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
 
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+/.idea
 # Keystore files
 *.jks
 
