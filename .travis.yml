@@ -18,8 +18,10 @@ cache:
     - $HOME/.android/build-cache
 
 env:
+#really useful to test different API levels. So, each commit you push to the repository will start
+#two separate builds and test prepossess.
  matrix:
-    - ANDROID_TARGET=android-24 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-26 ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
  global:
     - ANDROID_API_LEVEL=26
@@ -42,12 +44,12 @@ android:
         - extra-google-google_play_services
         - extra-google-m2repository  # support library
         - extra-android-m2repository # for design library
-        # Support library
-        - extra-android-support
+        - extra-android-support # Support library
         - addon-google_apis-google-$ANDROID_API_LEVEL
         - addon-google_apis-google-$EMULATOR_API_LEVEL
 
-        #system images for emulator
+        #specify emulator system images on which application testing will be performed.
+        #If you are going to use more than one API levels remember to define all the emulators needed
         #- sys-img-armeabi-v7a-android-$ANDROID_API_LEVEL_LEVEL
         #- sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
         - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
@@ -55,10 +57,10 @@ android:
 
 #Google requires you to accept their license agreement before
 #you can get their libraries and tools.
-# licenses:
- #   - android-sdk-preview-license-.+
-  #  - android-sdk-license-.+
-   # - google-gdk-license-.+
+licenses:
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 
 
 
