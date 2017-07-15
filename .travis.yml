@@ -66,6 +66,10 @@ licenses:
   - 'google-gdk-license-.+'
 
 before_script:
+# Prepare pre-accepted licenses to not be promted at installation
+  - mkdir -p "$ANDROID_HOME/licenses"
+  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+
   - chmod +x gradlew #Grant permissions
   - android list targets
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI  #Create AVD for given api
