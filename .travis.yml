@@ -26,24 +26,24 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.android/build-cache
 env:
-  matrix:
+  #matrix:
     #defines the Android API version and the processor architecture, on which the code will be tested
     #These lines re-executes the script for each variable.
     #it will execute the whole script with the 21, and 25 APIs.
     #We can say it is really useful to test different API levels.
     # So, each commit you push to the repository will start two separate builds and test prepossess.
-    - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-24 ANDROID_ABI=armeabi-v7a
+    #- ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
+    #- ANDROID_TARGET=android-24 ANDROID_ABI=armeabi-v7a
     #- ANDROID_TARGET=android-25 ANDROID_ABI=google_apis/armeabi-v7a
 
   global:  #Optional
    - ANDROID_API_LEVEL=25
    - ANDROID_BUILD_TOOLS_VERSION=25.0.2
 
-   #- EMULATOR_API_LEVEL=21
+   - EMULATOR_API_LEVEL=21
 
    #- ANDROID_ABI=google_apis/armeabi-v7a
-   #- ANDROID_ABI=armeabi-v7a
+   - ANDROID_ABI=armeabi-v7a
    #- ANDROID_TAG=google_apis
 
    - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
@@ -74,9 +74,9 @@ android:
 
     # The SDK version used to compile your project
     - android-ANDROID_API_LEVEL
-    - android-21
+    #- android-21
     #- android-23
-    - android-24
+    #- android-24
 
     # Additional components
     - extra-google-google_play_services # Google Play Services
@@ -86,18 +86,18 @@ android:
 
     #To get a list of available exact component names and descriptions run the command
     #android list sdk --no-ui --all --extended (preferably in your local development machine).
-    #- addon-google_apis-google-$ANDROID_API_LEVEL
-    #- addon-google_apis-google-$EMULATOR_API_LEVEL
+    - addon-google_apis-google-$ANDROID_API_LEVEL
+    - addon-google_apis-google-$EMULATOR_API_LEVEL
 
     #specify  at least one system image, if you need to run emulator(s) during your tests
     #specify emulator system images on which application testing will be performed.
     #If you are going to use more than one API levels remember to define all the emulators needed
-    #- sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
-    #- sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+    - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+    #- sys-img-armeabi-v7a-android-21
     #- sys-img-armeabi-v7a-android-22
     #- sys-img-armeabi-v7a-android-25
-    - sys-img-armeabi-v7a-android-24
+    #- sys-img-armeabi-v7a-android-24
 
 #Writing build script
 before_script:
@@ -109,7 +109,7 @@ before_script:
 
   # Emulator Management: Create, Start and Wait
    # Create AVD for given api
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t $EMULATOR_API_LEVEL --abi $ANDROID_ABI
   #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --skin 480x800
   #Start emulator
   - emulator -avd test -no-skin -no-audio -no-window &
