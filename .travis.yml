@@ -39,7 +39,11 @@ env:
    - ANDROID_API_LEVEL=25
    - EMULATOR_API_LEVEL=21
    - ANDROID_BUILD_TOOLS_VERSION=25.0.2
-   - ANDROID_ABI=google_apis/armeabi-v7a
+
+   #- ANDROID_ABI=google_apis/armeabi-v7a
+   - ANDROID_ABI=armeabi-v7a
+   #- ANDROID_TAG=google_apis
+
    - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
 
 #Google requires you to accept their license agreement before
@@ -77,14 +81,18 @@ android:
 
     #To get a list of available exact component names and descriptions run the command
     #android list sdk --no-ui --all --extended (preferably in your local development machine).
-    - addon-google_apis-google-$ANDROID_API_LEVEL
-    - addon-google_apis-google-$EMULATOR_API_LEVEL
+    #- addon-google_apis-google-$ANDROID_API_LEVEL
+    #- addon-google_apis-google-$EMULATOR_API_LEVEL
 
     #specify  at least one system image, if you need to run emulator(s) during your tests
     #specify emulator system images on which application testing will be performed.
     #If you are going to use more than one API levels remember to define all the emulators needed
-    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
-    - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+    #- sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+    #- sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+
+    - sys-img-${ANDROID_ABI}-android-${ANDROID_API_LEVEL}
+    - sys-img-${ANDROID_ABI}-android-${EMULATOR_API_LEVEL}
+
 
 #Writing build script
 before_script:
@@ -97,7 +105,7 @@ before_script:
   # Emulator Management: Create, Start and Wait
    # Create AVD for given api
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-
+  #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --skin 480x800
   #Start emulator
   - emulator -avd test -no-skin -no-audio -no-window &
 
@@ -124,7 +132,14 @@ script:
 
 
 before_install:
-          - mkdir "$ANDROID_HOME/licenses" || true
-          - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
-          - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-          - chmod +x gradlew
+    - mkdir "$ANDROID_HOME/licenses" || true
+    - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+    - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+    - chmod +x gradlew
+    # run the code coverage after every successful build
+    - pip install --user codecov    #Install codecov
+
+after_success:
+    - codecov                       #Run codecov
+
+after_failure: "cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml"
