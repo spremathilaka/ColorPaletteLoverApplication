@@ -34,7 +34,7 @@ env:
     # So, each commit you push to the repository will start two separate builds and test prepossess.
     - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-24 ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-25 ANDROID_ABI=google_apis/armeabi-v7a
+    #- ANDROID_TARGET=android-25 ANDROID_ABI=google_apis/armeabi-v7a
 
   global:  #Optional
    - ANDROID_API_LEVEL=25
@@ -74,7 +74,6 @@ android:
 
     # The SDK version used to compile your project
     - android-ANDROID_API_LEVEL
-
     - android-21
     - android-24
 
@@ -86,7 +85,7 @@ android:
 
     #To get a list of available exact component names and descriptions run the command
     #android list sdk --no-ui --all --extended (preferably in your local development machine).
-    - addon-google_apis-google-$ANDROID_API_LEVEL
+    #- addon-google_apis-google-$ANDROID_API_LEVEL
     #- addon-google_apis-google-$EMULATOR_API_LEVEL
 
     #specify  at least one system image, if you need to run emulator(s) during your tests
@@ -94,7 +93,7 @@ android:
     #If you are going to use more than one API levels remember to define all the emulators needed
     - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
     #- sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-    - sys-img-${ANDROID_ABI}-android-21
+    #- sys-img-${ANDROID_ABI}-android-21
     #- sys-img-${ANDROID_ABI}-android-22
     #- sys-img-${ANDROID_ABI}-android-23
     - sys-img-${ANDROID_ABI}-android-24
