@@ -104,7 +104,7 @@ before_script:
 
   #list out supported android targets by running
   #list of the supported android targets for given build environments in Travis log window
-  #- android list targets
+  - android list targets
 
   # Emulator Management: Create, Start and Wait
    # Create AVD for given api
@@ -133,6 +133,8 @@ script:
     #- ./gradlew :projectcore:checkstyle
     #  - ./gradlew clean build -x lint
     #  - ./gradlew :project:connectedAndroidTest
+    #- ./gradlew connectedCheck coveralls -PdisablePreDex --stacktrace
+
 
 
 before_install:
