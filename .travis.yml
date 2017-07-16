@@ -24,7 +24,7 @@ env:
  #   - ANDROID_TARGET=android-25 ANDROID_ABI=armeabi-v7a
  #   - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
  global:
-    - ANDROID_API_LEVEL=25
+    - ANDROID_API_LEVEL=24
     - EMULATOR_API_LEVEL=21
     - ANDROID_BUILD_TOOLS_VERSION=25.0.2
     - ADB_INSTALL_TIMEOUT=10    #Time out to 10 mins/2 minutes by default
@@ -50,15 +50,15 @@ android:
         - extra-android-m2repository # for design library
         - extra-android-support # Support library
 
-        - addon-google_apis-google-$ANDROID_API_LEVEL
-        - addon-google_apis-google-$EMULATOR_API_LEVEL
+        #- addon-google_apis-google-$ANDROID_API_LEVEL
+       # - addon-google_apis-google-$EMULATOR_API_LEVEL
 
         #specify emulator system images on which application testing will be performed.
         #If you are going to use more than one API levels remember to define all the emulators needed
-        #- sys-img-armeabi-v7a-android-$ANDROID_API_LEVEL_LEVEL
-        #- sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
-        - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
-        - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
+        - sys-img-armeabi-v7a-android-$ANDROID_API_LEVEL_LEVEL
+        - sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
+        #- sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+        #- sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
 
 #Google requires you to accept their license agreement before
 #you can get their libraries and tools.
