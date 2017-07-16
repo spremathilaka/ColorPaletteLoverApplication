@@ -109,7 +109,8 @@ before_script:
 
   # Emulator Management: Create, Start and Wait
    # Create AVD for given api
-  - echo no | android create avd --force -n test -t ${EMULATOR_API_LEVEL} --abi ${ANDROID_ABI}
+  #- echo no | android create avd --force -n test -t ${EMULATOR_API_LEVEL} --abi ${ANDROID_ABI}
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
   #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --skin 480x800
   #Start emulator
   - emulator -avd test -no-skin -no-audio -no-window &
