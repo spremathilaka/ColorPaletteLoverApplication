@@ -110,7 +110,8 @@ before_script:
   # Emulator Management: Create, Start and Wait
    # Create AVD for given api
   #- echo no | android create avd --force -n test -t ${EMULATOR_API_LEVEL} --abi ${ANDROID_ABI}
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-25 --abi google_apis/armeabi-v7a
   #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --skin 480x800
   #Start emulator
   - emulator -avd test -no-skin -no-audio -no-window &
@@ -130,7 +131,7 @@ script:
     #- ./gradlew assembleDebugAndroidTest
 
     #connectedCheck executes instrumentation tests located in src/androidTests/
-    - ./gradlew connectedAndroidTest -PdisablePreDex --stacktrace
+    - ./gradlew  clean build connectedAndroidTest -PdisablePreDex --stacktrace
     #-    ./gradlew clean build
     #- ./gradlew :projectcore:checkstyle
     #  - ./gradlew clean build -x lint
@@ -140,10 +141,11 @@ script:
 
 
 before_install:
+    - chmod +x gradlew
     - mkdir "$ANDROID_HOME/licenses" || true
     - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
     - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-    - chmod +x gradlew
+
     # run the code coverage after every successful build
     - pip install --user codecov    #Install codecov
 
