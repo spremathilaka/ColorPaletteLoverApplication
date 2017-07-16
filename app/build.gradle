@@ -3,6 +3,13 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
+    lintOptions {
+        abortOnError true
+        warningsAsErrors true
+    }
+
+
     defaultConfig {
         applicationId "com.devlog.cpl"
         minSdkVersion 21
