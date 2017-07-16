@@ -33,7 +33,7 @@ env:
     #We can say it is really useful to test different API levels.
     # So, each commit you push to the repository will start two separate builds and test prepossess.
     - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-24 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
     #- ANDROID_TARGET=android-25 ANDROID_ABI=google_apis/armeabi-v7a
 
   global:  #Optional
@@ -75,7 +75,8 @@ android:
     # The SDK version used to compile your project
     - android-ANDROID_API_LEVEL
     - android-21
-    - android-24
+    - android-23
+    #- android-24
 
     # Additional components
     - extra-google-google_play_services # Google Play Services
@@ -91,12 +92,12 @@ android:
     #specify  at least one system image, if you need to run emulator(s) during your tests
     #specify emulator system images on which application testing will be performed.
     #If you are going to use more than one API levels remember to define all the emulators needed
-    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+    #- sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
     #- sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-    #- sys-img-${ANDROID_ABI}-android-21
+    - sys-img-${ANDROID_ABI}-android-21
     #- sys-img-${ANDROID_ABI}-android-22
-    #- sys-img-${ANDROID_ABI}-android-23
-    - sys-img-${ANDROID_ABI}-android-24
+    - sys-img-${ANDROID_ABI}-android-23
+    #- sys-img-${ANDROID_ABI}-android-24
 
 #Writing build script
 before_script:
