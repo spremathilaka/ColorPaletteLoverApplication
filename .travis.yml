@@ -33,7 +33,7 @@ env:
     #We can say it is really useful to test different API levels.
     # So, each commit you push to the repository will start two separate builds and test prepossess.
     - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
-    - ANDROID_TARGET=android-25 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-24 ANDROID_ABI=armeabi-v7a
 
   global:  #Optional
    - ANDROID_API_LEVEL=25
